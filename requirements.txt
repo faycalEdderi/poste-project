@@ -1,0 +1,7 @@
+django
+djangorestframework
+scikit-learn
+pandas
+matplotlib
+joblib
+pillow
