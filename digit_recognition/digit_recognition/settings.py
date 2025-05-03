@@ -52,6 +52,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+INSTALLED_APPS += ['corsheaders']
+MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware'] + MIDDLEWARE
+CORS_ALLOW_ALL_ORIGINS = True
+
 ROOT_URLCONF = 'digit_recognition.urls'
 
 TEMPLATES = [
