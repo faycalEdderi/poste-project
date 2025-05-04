@@ -19,6 +19,9 @@ __pycache__/
 venv/
 pip-log.txt
 pip-delete-this-directory.txt
+# Ce fichier est trop volumineux pour etre sur GitHub
+random_forest_mnist.pkl 
+
 
 # Django
 *.py[cod]
