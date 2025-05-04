@@ -1,10 +1,10 @@
 import React from 'react';
-import Sketchpad from './Sketchpad';
+import SketchPad from './components/Sketchpad/SketchPad';
 
 function App() {
   return (
     <div className="App">
-      <Sketchpad />
+      <SketchPad />
     </div>
   );
 }
