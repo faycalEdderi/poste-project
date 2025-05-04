@@ -1,13 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
-
+import "./SketchPad.css";
 
 const SketchPad = () => {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [prediction, setPrediction] = useState(null);
-
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -44,16 +43,20 @@ const SketchPad = () => {
 
   const predictDigit = async () => {
     const canvas = canvasRef.current;
-    const blob = await new Promise(resolve =>
+    const blob = await new Promise((resolve) =>
       canvas.toBlob(resolve, "image/png")
     );
     const formData = new FormData();
     formData.append("image", blob, "drawing.png");
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/predict/", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/predict/",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       setPrediction(response.data.prediction);
     } catch (error) {
       console.error("Erreur:", error);
@@ -68,7 +71,9 @@ const SketchPad = () => {
   };
 
   return (
-    <div>
+    <div className="container">
+      <h1>Reconnaissance de Chiffres Manuscrits</h1>
+
       <canvas
         ref={canvasRef}
         onMouseDown={startDrawing}
@@ -77,9 +82,11 @@ const SketchPad = () => {
         onMouseLeave={stopDrawing}
         style={{ border: "1px solid #000", backgroundColor: "white" }}
       />
-       <button onClick={predictDigit}>Prédire</button>
-       <button onClick={clearCanvas}>Effacer</button>
-       {prediction !== null && <h2>Prédiction : {prediction}</h2>}
+      <div className="buttons">
+        <button onClick={predictDigit}>Prédire</button>
+        <button onClick={clearCanvas}>Effacer</button>
+      </div>
+      {prediction !== null && <h2>Prédiction : {prediction}</h2>}
     </div>
   );
 };
