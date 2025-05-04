@@ -14,10 +14,11 @@ const SketchPad = () => {
     canvas.height = 280;
     canvas.style.width = "280px";
     canvas.style.height = "280px";
-
+    canvas.style.backgroundColor = "black";
+  
     const context = canvas.getContext("2d");
     context.lineCap = "round";
-    context.strokeStyle = "black";
+    context.strokeStyle = "white"; 
     context.lineWidth = 15;
     contextRef.current = context;
   }, []);
