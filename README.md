@@ -1,14 +1,14 @@
 Projet Reconnaissance de Chiffres Manuscrits
 ============================================
 
-Ce projet utilise un modèle d'intelligence artificielle pour reconnaître les chiffres manuscrits dessinés dans une interface web. Il est basé sur le dataset MNIST, un modèle RandomForestClassifier (scikit-learn), et une application fullstack (Django REST + React).
+Ce projet utilise un modèle d'intelligence artificielle pour reconnaître les chiffres manuscrits dessinés dans une interface web. Il est basé sur le dataset MNIST, un modèle CNN (scikit-learn), et une application fullstack (Django REST + React).
 
 Structure du projet :
 ---------------------
 
 digit_recognition/           -> Backend Django
 digit-recognition-frontend/ -> Frontend React
-ai/random_forest_mnist.pkl  -> Modèle IA entraîné
+ai/cnn_mnist_model.h5  -> Modèle IA entraîné
 
 Comment lancer le projet :
 --------------------------
@@ -16,9 +16,11 @@ Comment lancer le projet :
 1. Entraîner le modèle (si besoin) :
    À exécuter depuis un environnement Python local ou sur Google Colab :
 
+   python learning_ai_cnn.py
    python learning_ai_script.py
 
-   Cela génère le fichier `random_forest_mnist.pkl`.
+
+   Cela génère le fichier `cnn_mnist_model.h5`.
 
 2. Lancer le backend Django :
 
