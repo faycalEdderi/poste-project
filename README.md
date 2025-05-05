@@ -17,8 +17,6 @@ Comment lancer le projet :
    À exécuter depuis un environnement Python local ou sur Google Colab :
 
    python learning_ai_cnn.py
-   python learning_ai_script.py
-
 
    Cela génère le fichier `cnn_mnist_model.h5`.
 
