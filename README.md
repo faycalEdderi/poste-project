@@ -54,7 +54,7 @@ Tâches & Organisation :
 Support de présentation :
 -------------------------
 
-Lien vers le support :
+Lien vers le support : https://gamma.app/docs/Reconnaissance-de-chiffres-manuscrits-u68km8gtxwk5xrm 
 
 
 Auteur : Edderi Fayçal
