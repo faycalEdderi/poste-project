@@ -2,10 +2,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser
 from django.conf import settings
-import joblib
 import numpy as np
 from PIL import Image
 import os
+import tensorflow as tf 
 
 class PredictDigitView(APIView):
     parser_classes = [MultiPartParser]
@@ -15,13 +15,20 @@ class PredictDigitView(APIView):
         if not image_file:
             return Response({"error": "Aucune image reçue."}, status=400)
 
-        image = Image.open(image_file).convert("L")
+        # ✅ Traitement de l'image
+        image = Image.open(image_file).convert("L")  # noir et blanc
         image = image.resize((28, 28), Image.Resampling.LANCZOS)
 
-        image_array = np.array(image).reshape(1, -1).astype(np.uint8)
+        # Transforme l'image en tableau numpy de forme (1, 28, 28, 1)
+        image_array = np.array(image).astype("float32") / 255.0
+        image_array = image_array.reshape(1, 28, 28, 1)
 
-        model_path = os.path.join(settings.BASE_DIR, 'ai/random_forest_mnist.pkl')
-        model = joblib.load(model_path)
+        # ✅ Chargement du modèle CNN .h5
+        model_path = os.path.join(settings.BASE_DIR, 'ai/cnn_mnist_model.h5')
+        model = tf.keras.models.load_model(model_path)
 
+        # ✅ Prédiction
         prediction = model.predict(image_array)
-        return Response({"prediction": int(prediction[0])})
+        predicted_digit = int(np.argmax(prediction))
+
+        return Response({"prediction": predicted_digit})

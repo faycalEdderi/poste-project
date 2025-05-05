@@ -81,7 +81,6 @@ const SketchPad = () => {
         onMouseMove={draw}
         onMouseUp={stopDrawing}
         onMouseLeave={stopDrawing}
-        style={{ border: "1px solid #000", backgroundColor: "white" }}
       />
       <div className="buttons">
         <button onClick={predictDigit}>Prédire</button>
